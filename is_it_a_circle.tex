@@ -1,22 +1,11 @@
-\documentclass[11pt]{article}
-\parindent=0pt \parskip=8pt
-%\textwidth=6.5in
-%\hoffset=.3in
+\documentclass[11pt]{amsart}
 \usepackage{amssymb,amsmath,amsthm,mathrsfs}
 \usepackage[margin=.75in]{geometry}
 \usepackage{enumitem}
-\setlist{topsep=0pt,parsep=0pt,partopsep=0pt,itemindent=0pt}
 \usepackage{tikz}
 \usetikzlibrary{arrows,calc}
 \tikzset{>=stealth}
 
-\pagestyle{plain}
-\title{Is this object a circle?}
-\author{}
-\date{}
-
-\begin{document}
-\newgeometry{top= 0.75in, bottom=.75in, right=.75in, left=.75in}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%% NEW COMMANDS %%%%%%%%%%%%%%%%%
@@ -96,19 +85,65 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
+\title{Is this object a circle?}
+\author{}
+\date{}
+
+\begin{document}
 \maketitle
-Suppose we fish some device out of the ocean with a face whose perimeter is given by a simple closed curve, \(S\).  To what degree can we determine if \(S\) is a circle by measuring chords and diameters?
-\\[2\baselineskip]
-If \(S\) ends up being a circle, an important piece of information about \(S\) would be its radius.  If \(S\) is a circle, we can obtain the radius of \(S\) as follows.
-\\[1\baselineskip]
-1. Pick a point on \(S\), label this point \(A\).
+
+
+
+Given a simple closed curve in the plane $S$, we seek simple
+algorithms that will identify $S$ as not being a circle. Specifically,
+we wish to identify noncircles via algorithms that measure chords.
+
+We'll identify $C\in\R^2$ as a circle if
+\[
+C\subset \{x^2+y^2 = 1 + \epsilon \}
+\]
+where $\epsilon$ is a numerical tolerance on the circle. Given
+\[
+S\not\subset \{x^2+y^2 = 1 + \epsilon \}
+\]
+we wish to examine the methods of determining this non-inclusion by
+\begin{enumerate}
+\item Measuring relative arc length.
+\item Measuring angles.
+\item Meauring chords.
+\item Measuring widths.
+\end{enumerate}
+
+Suppose we fish some device out of the ocean with a face whose
+perimeter is given by a simple closed curve, \(S\).  To what degree
+can we determine if \(S\) is a circle by measuring chords and
+diameters?
+
+
+If \(S\) ends up being a circle, an important piece of information
+about \(S\) would be its radius.  If \(S\) is a circle, we can obtain
+the radius of \(S\) as follows.
+
+
+
+1. Pick a point on
+\(S\), label this point \(A\).
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.6]{circle_1.jpg}
 	\end{figure}
 \end{center}
-If \(S\) is a circle, then \(S\) is a simple closed curve that exists in a 2-dimensional subspace of \(\R^3\).  Since a 2D subspace of \(\R^3\) is isomorphic to \(\R^2\), the Jordan curve theorem implies \(S\) divides this subspace into two regions, a region interior to \(S\) and a region exterior to \(S\).
-\\[2\baselineskip]
+If \(S\) is a circle, then \(S\) is a simple closed curve that exists
+in a $2$-dimensional subspace of \(\R^3\).  Since a $2$D subspace of
+\(\R^3\) is isomorphic to \(\R^2\), the Jordan curve theorem implies
+\(S\) divides this subspace into two regions, a region interior to
+\(S\) and a region exterior to \(S\).
+
+
+
 2. Pick a direction, that is, a vector, \(v\), that lands you in the region interior to \(S\) and construct the ray with origin \(A\) eminating in the direction of \(v\).  For example,
 \begin{center}
 	\begin{figure}[h]
@@ -122,33 +157,47 @@ is not a valid direction, whereas
 	\end{figure}
 \end{center}
 is a valid direction.
-\newpage
+
+
 We then obtain the ray, \(R_1\), and the intersection point, \(B\).  
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.5]{circle_4.jpg}
 	\end{figure}
 \end{center}
-3. At the point \(B\), construct the line, \(R_2\), passing through \(B\), perpendicular to \(R_1\). Label the point of intersection of \(R_2\) and \(S\) that is not equal to \(B\), \(C\).
+3. At the point \(B\), construct the line, \(R_2\), passing through
+\(B\), perpendicular to \(R_1\). Label the point of intersection of
+\(R_2\) and \(S\) that is not equal to \(B\), \(C\).
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.5]{circle_5.jpg}
 	\end{figure}
 \end{center}
-In the event that there is not another point, \(C\), intersecting \(S\), different from \(B\), than \(R_2\) is tangent to \(S\) at \(B\).  In this case, \(AB\) gives a diameter of \(S\), and \(r=\frac{1}{2}length(AB)\) gives the radius of \(S\).
+In the event that there is not another point, \(C\), intersecting
+\(S\), different from \(B\), than \(R_2\) is tangent to \(S\) at
+\(B\).  In this case, \(AB\) gives a diameter of \(S\), and
+\(r=\frac{1}{2}length(AB)\) gives the radius of \(S\).
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.5]{circle_5_b.jpg}
 	\end{figure}
 \end{center}
-Otherwise, construct the line segment \(AC\).  Since the inscribed angle, \(\angle ABC\), is \(90^{\circ}\) by construction, the central angle with inscribed points \(A\) and \(C\) must be \(180^{\circ}\).  Hence \(AC\) is a diameter of \(S\). 
+Otherwise, construct the line segment \(AC\).  Since the inscribed
+angle, \(\angle ABC\), is \(90^{\circ}\) by construction, the central
+angle with inscribed points \(A\) and \(C\) must be \(180^{\circ}\).
+Hence \(AC\) is a diameter of \(S\).
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.5]{circle_6.jpg}
 	\end{figure}
 \end{center}
 We can then take \(r = \frac{1}{2}length(AC)\) as the radius of \(S\).
-\newpage
+
+
+
+
+
+
 Another way we could find the radius of our supposed circle, \(S\), is to pick a point, \(A\), on \(S\), construct the line tangent to \(S\) and \(A\) and then construct the line perpendicular to this tangent line at \(A\).  We can then label the second intersection of \(S\) with this perpendicular line as \(B\).  Since lines tangent to a circle are perpendicular to  radial lines at the point of tangency, \(AB\) is a diameter of \(S\) and we may take \(r=\frac{1}{2}length(AB)\) as the radius for \(S\).  We know such a point, \(B\), will exist since \(S\) is compact and the distance function is continuous.
 \begin{center}
 	\begin{figure}[h]
@@ -172,17 +221,33 @@ In an isosceles triangle, we can find the length of the third side according to
 	\end{figure}
 \end{center}
 So that the length of each side in our regular \(n\)-gon is \(2r\sin\left( \frac{\pi}{n} \right)\).
-\\[1\baselineskip]
+
+
+
+
 2. After rotating \((\frac{1}{2}(\frac{n-2}{n})\cdot 180)^{\circ}\) from the diameter of \(S\), construct a line segment of length \(2r\sin\left( \frac{\pi}{n} \right)\).  If \(S\) is a circle, this line segment should land back on \(S\).  If this line segment does not land back on \(S\), you can conclude \(S\) is not a circle.
-\\[1\baselineskip]
+
+
+
+
+
 3. If the line segment constructed lands you back on \(S\), rotate \(((\frac{n-2}{n})\cdot 180)^{\circ}\) so that the terminal ray lies in the region interior to \(S\).  Construct a line segment of length \(2r\sin\left( \frac{\pi}{n} \right)\).  If \(S\) is a circle, this line segment should land back on \(S\).  If this line segment does not land back on \(S\), you can conclude \(S\) is not a circle. 
-\\[1\baselineskip]
+
+
+
+
+
 4. Repeat step 3 a total of \(n-2\) more times.  If at any point the line segment construction does not land back on \(S\), or at any point the line segment constructed crosses \(S\) before fully constructed, you can conclude \(S\) is not a circle.  If after completing \(n\) total side constructions you do not return to your starting point, you can conclude \(S\) is not a circle.
 \begin{center}
 	\begin{figure}[h]
 		\includegraphics[scale=0.29]{circle_7.jpg}
 	\end{figure}
 \end{center}
+
+\begin{thebibliography}{9}
+\bibitem[label1]{aR2003} A.\ Ricotta, ``Constant-Diameter Curves,'' The Mathematical
+Intelligencer \textbf{25}, no. 4, 2003, 4--5.
+\end{thebibliography}
 \end{document}
 
 
