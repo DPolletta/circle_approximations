@@ -1,0 +1,265 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8651,        257]
+NotebookOptionsPosition[      7983,        238]
+NotebookOutlinePosition[      8383,        254]
+CellTagsIndexPosition[      8340,        251]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+We should think in terms of both arc length and central angle measure. We \
+should also consider diameters/widths.\
+\>", "Section",
+ CellChangeTimes->{{3.8563382791063766`*^9, 
+  3.856338327034322*^9}},ExpressionUUID->"4c94689e-6e56-4595-bc93-\
+8beb61f18070"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"circle", "[", "t_", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Cos", "[", "t", "]"}], ",", 
+     RowBox[{"Sin", "[", "t", "]"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ellipse", "[", 
+     RowBox[{"a_", ",", "b_", ",", "t_"}], "]"}], "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"a", " ", 
+       RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+      RowBox[{"b", " ", 
+       RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"constDiaDimp", "[", 
+     RowBox[{"p_", ",", "t_"}], "]"}], "=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{"t", ",", "Pi"}], "]"}], "<=", " ", "Pi"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.1", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], " ", 
+         RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.1", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{"0.1", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], " ", 
+         RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{"0.1", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"constDiaSmooth", "[", "t_", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", 
+        RowBox[{"0.1", 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], ")"}], " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"t", "/", "2"}], "]"}]}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"0.1", " ", 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], ")"}], 
+      RowBox[{"Sin", "[", 
+       RowBox[{"t", "/", "2"}], "]"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"constDiaSmooth2", "[", "t_", "]"}], "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"0.1", 
+          RowBox[{"Sin", "[", "t", "]"}]}]}], ")"}], " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"t", "/", "2"}], "+", "Pi"}], "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", 
+         RowBox[{"0.1", " ", 
+          RowBox[{"Sin", "[", "t", "]"}]}]}], ")"}], 
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         RowBox[{"t", "/", "2"}], "+", "Pi"}], "]"}]}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot", "[", 
+  RowBox[{
+   RowBox[{"constDiaSmooth", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ParametricPlot", "[", 
+  RowBox[{
+   RowBox[{"constDiaSmooth2", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", 
+     RowBox[{"2", "Pi"}]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.856338380538125*^9, 3.856338507436401*^9}, {
+  3.85633856258456*^9, 3.856338593345235*^9}, {3.8563386525165243`*^9, 
+  3.85633889956089*^9}, {3.856338945546432*^9, 3.8563391267934027`*^9}, {
+  3.8563392302939262`*^9, 3.856339363330743*^9}, {3.856339442591641*^9, 
+  3.856339511568323*^9}, {3.8563505550799828`*^9, 3.8563506453189707`*^9}, {
+  3.856350705241825*^9, 3.856350756662175*^9}, {3.8563508560297403`*^9, 
+  3.856350893003957*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"a2bb19d4-1641-4ea8-9c91-cfe679166031"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.856338380538125*^9, 3.856338507436401*^9}, {
+  3.85633856258456*^9, 3.856338593345235*^9}, {3.8563386525165243`*^9, 
+  3.85633889956089*^9}, {3.856338945546432*^9, 3.8563391267934027`*^9}, {
+  3.8563392302939262`*^9, 3.856339363330743*^9}, {3.856339442591641*^9, 
+  3.856339511568323*^9}, {3.8563505550799828`*^9, 3.8563506453189707`*^9}, {
+  3.856350705241825*^9, 3.856350756662175*^9}, {3.8563508560297403`*^9, 
+  3.856350893003957*^9}},ExpressionUUID->"99dc9c5a-d7e8-4020-a4e1-\
+5e1642a0721c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"constDiaSmooth", "[", 
+     RowBox[{"p_", ",", "t_"}], "]"}], "=", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{"t", ",", 
+         RowBox[{"2", "Pi"}]}], "]"}], "<=", "Pi"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{"0.1", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], " ", 
+         RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.1", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            RowBox[{"0.1", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}]}], " ", 
+         RowBox[{"Cos", "[", "t", "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "+", 
+           RowBox[{"0.1", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"p", "*", "t"}], "]"}]}]}], ")"}], 
+         RowBox[{"Sin", "[", "t", "]"}]}]}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"curve", "=", 
+   RowBox[{"ParametricPlot", "[", 
+    RowBox[{
+     RowBox[{"constDiaSmooth", "[", 
+      RowBox[{"90", ",", "t"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", 
+       RowBox[{"2", "Pi"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"Circle", "[", "]"}], "]"}], ",", "curve"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8563508836978073`*^9, 3.8563509180587587`*^9}, {
+   3.856350951397313*^9, 3.856351033164633*^9}, {3.856351066622266*^9, 
+   3.8563511037499237`*^9}, {3.856351134889505*^9, 3.8563511412895927`*^9}, {
+   3.856351173345817*^9, 3.856351288969445*^9}, 3.856351320218555*^9, {
+   3.856351386412422*^9, 3.856351398967766*^9}, {3.856351449405511*^9, 
+   3.856351459297999*^9}},
+ CellLabel->
+  "In[135]:=",ExpressionUUID->"1b369b61-1c40-4bcb-872e-a625a5e901c8"]
+}, Open  ]]
+},
+WindowSize->{1428., 770.25},
+WindowMargins->{{Automatic, -1434}, {6, Automatic}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f4d5da3b-fae3-444a-b6aa-72bfa59e0965"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 269, 6, 68, "Section",ExpressionUUID->"4c94689e-6e56-4595-bc93-8beb61f18070"],
+Cell[852, 30, 4211, 126, 236, "Input",ExpressionUUID->"a2bb19d4-1641-4ea8-9c91-cfe679166031"],
+Cell[5066, 158, 545, 8, 29, "Input",ExpressionUUID->"99dc9c5a-d7e8-4020-a4e1-5e1642a0721c"],
+Cell[5614, 168, 2353, 67, 92, "Input",ExpressionUUID->"1b369b61-1c40-4bcb-872e-a625a5e901c8"]
+}, Open  ]]
+}
+]
+*)
+
